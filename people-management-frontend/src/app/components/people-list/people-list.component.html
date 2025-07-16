@@ -1,0 +1,33 @@
+<h2>List of People</h2>
+
+<div *ngIf="message" [ngClass]="{'alert': true, 'alert-success': messageType === 'success', 'alert-error': messageType === 'error'}">
+  {{ message }}
+</div>
+
+<table *ngIf="people.length > 0; else noPeople">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Age</th>
+      <th>Gender</th>
+      <th>Mobile Number</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let person of people">
+      <td>{{ person.name }}</td>
+      <td>{{ person.age }}</td>
+      <td>{{ person.gender }}</td>
+      <td>{{ person.mobile }}</td>
+      <td>
+        <button class="edit" [routerLink]="['/person/edit', person._id]">Edit</button>
+        <button class="delete" [routerLink]="['/person/delete', person._id]">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<ng-template #noPeople>
+  <p>No people found. <a routerLink="/person/new">Add a new person</a>.</p>
+</ng-template>

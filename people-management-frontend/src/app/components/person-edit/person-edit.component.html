@@ -1,0 +1,27 @@
+<h2>{{ isEditMode ? 'Edit Person' : 'Create New Person' }}</h2>
+
+<div *ngIf="message" [ngClass]="{'alert': true, 'alert-success': messageType === 'success', 'alert-error': messageType === 'error'}">
+  {{ message }}
+</div>
+
+<form (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label for="name">Name:</label>
+    <input type="text" id="name" [(ngModel)]="person.name" name="name" required>
+  </div>
+  <div class="form-group">
+    <label for="age">Age:</label>
+    <input type="number" id="age" [(ngModel)]="person.age" name="age" required>
+  </div>
+  <div class="form-group">
+    <label for="gender">Gender:</label>
+    <input type="text" id="gender" [(ngModel)]="person.gender" name="gender" required>
+  </div>
+  <div class="form-group">
+    <label for="mobile">Mobile Number:</label>
+    <input type="text" id="mobile" [(ngModel)]="person.mobile" name="mobile" required>
+  </div>
+  <button type="submit">{{ isEditMode ? 'Update' : 'Create' }} Person</button>
+</form>
+
+<a routerLink="/people" class="back-link">Back to List</a>
